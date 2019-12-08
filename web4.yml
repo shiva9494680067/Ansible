@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+         - name: install java on client
+           apt: name=openjdk-8-jdk state=present
+
+         - name: install tomcat on client
+           get_url: http://mirrors.estointernet.in/apache/tomcat/tomcat-8/v8.5.49/bin/apache-tomcat-8.5.49.tar.gz
+        
+         - name: extract tomcat
+           unarchive: src=/root/apache-tomcat-8.5.49.tar.gz dest=/root remote-src=yes
+        
+         - name: copy viprofile to war

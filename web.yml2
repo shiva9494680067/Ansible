@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+  
+  tasks:
+
+	-name: install nginx on client
+         apt: name=nginx state=present
+	 

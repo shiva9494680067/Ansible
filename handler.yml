@@ -1,0 +1,24 @@
+---
+- hosts: all
+  become: yes
+
+  handlers:
+    - name: restart nginx
+      service:
+        name: nginx
+        state: restarted
+
+
+  tasks:
+       - name: nginx install
+         apt: name=nginx state=present
+
+       - name: service start nginx
+         service: name=nginx state=started enabled=yes
+
+       - name: service stopped nginx
+         service: name=nginx state=stopped enabled=no
+
+
+         notify:
+               - restart nginx

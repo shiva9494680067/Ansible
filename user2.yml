@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: yes
+  vars:
+        - name: kr
+          uid: 1234
+          comment: test
+
+  tasks:
+        - name: user create in ubuntu
+          user: name={{name}} uid={{uid}}
+          when: ansible_facts['os_family'] == "Debian"
